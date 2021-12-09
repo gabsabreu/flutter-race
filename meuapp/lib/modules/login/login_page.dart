@@ -35,11 +35,17 @@ class _LoginPageState extends State<LoginPage> {
             Button(
               label: 'Entrar',
               type: ButtonType.fill,
+              onTap: () {
+                print('Entrar');
+              },
             ),
             SizedBox(height: 50),
             Button(
               label: 'Criar conta',
               type: ButtonType.outline,
+              onTap: () {
+                Navigator.pushNamed(context, "/login/create-account");
+              },
             ),
           ],
         ),
