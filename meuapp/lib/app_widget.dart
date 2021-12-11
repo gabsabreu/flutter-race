@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meuapp/modules/profile/profile_page.dart';
+import 'package:meuapp/shared/models/feed/feed_page.dart';
 import 'package:meuapp/shared/models/user_model.dart';
 
 import 'modules/home/home_page.dart';
@@ -22,7 +24,11 @@ class AppWidget extends StatelessWidget {
         "/login": (context) => const LoginPage(),
         "/login/create-account": (context) => CreateAccountPage(),
         "/home": (context) => HomePage(
-            // user: ModalRoute.of(context)!.settings.arguments as UserModel,
+              pages: [
+                FeedPage(),
+                ProfilePage(),
+              ],
+              // user: ModalRoute.of(context)!.settings.arguments as UserModel,
             )
       },
     );
