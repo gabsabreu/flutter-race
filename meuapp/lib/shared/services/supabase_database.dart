@@ -15,10 +15,6 @@ class SupabaseDatabase implements AppDatabase {
       const String.fromEnvironment("SUPABASEURL"),
       const String.fromEnvironment("SUPABASEKEY"),
     );
-    if (!kReleaseMode) {
-      print('Database initialiazed');
-      print('URL: ${client.supabaseUrl}, KEY: ${client.supabaseKey}');
-    }
   }
 
   @override
