@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meuapp/shared/services/app_databese.dart';
 import 'package:meuapp/shared/utils/app_state.dart';
 
 class CreateAccountController extends ChangeNotifier {
@@ -32,7 +33,7 @@ class CreateAccountController extends ChangeNotifier {
     if (validate()) {
       try {
         update(AppState.loading());
-        await Future.delayed(Duration(seconds: 3));
+        await AppDatabase.instance.createAccount(name: _name, email: _email, password: _password);
         update(AppState.success<String>('Deu certo'));
       } catch (e) {
         update(AppState.error('Não foi possível criar conta'));
