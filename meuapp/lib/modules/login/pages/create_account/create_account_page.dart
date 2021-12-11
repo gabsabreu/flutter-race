@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:meuapp/modules/login/pages/create_account/create_account_controller.dart';
 import 'package:meuapp/modules/login/repositories/login_repository_impl.dart';
-import 'package:meuapp/shared/services/app_databese.dart';
+import 'package:meuapp/shared/services/app_database.dart';
 
 import 'package:meuapp/shared/theme/app_theme.dart';
 import 'package:meuapp/shared/theme/widgets/button/button.dart';

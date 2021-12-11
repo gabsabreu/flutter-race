@@ -1,5 +1,5 @@
 import 'package:meuapp/shared/models/user_model.dart';
-import 'package:meuapp/shared/services/app_databese.dart';
+import 'package:meuapp/shared/services/app_database.dart';
 
 import 'login_repository.dart';
 
