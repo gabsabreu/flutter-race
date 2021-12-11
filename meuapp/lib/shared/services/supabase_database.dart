@@ -34,7 +34,7 @@ class SupabaseDatabase implements AppDatabase {
   Future<UserModel> login({required String email, required String password}) async {
     final response = await client.auth.signIn(email: email, password: password);
     if (response.error == null) {
-      final user = UserModel.fromMap(response.user!.toJson());
+      final user = await getUser(response.user!.id);
       return user;
     } else {
       throw Exception(response.error?.message ?? 'Não foi possível realizar login');
@@ -55,10 +55,10 @@ class SupabaseDatabase implements AppDatabase {
   Future<UserModel> getUser(String id) async {
     final response = await client.from("users").select().filter("id", "eq", id).execute();
     if (response.error == null) {
-      final user = UserModel.fromMap(response.data);
+      final user = UserModel.fromMap(response.data[0]);
       return user;
     } else {
-      throw Exception('Não foi possível buscar o usuário');
+      throw Exception("Não foi possível buscar o usuário");
     }
   }
 }

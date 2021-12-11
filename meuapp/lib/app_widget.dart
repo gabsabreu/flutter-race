@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meuapp/shared/models/user_model.dart';
 
 import 'modules/home/home_page.dart';
 import 'modules/login/login_page.dart';
@@ -20,7 +21,9 @@ class AppWidget extends StatelessWidget {
         "/splash": (context) => const SplashPage(),
         "/login": (context) => const LoginPage(),
         "/login/create-account": (context) => CreateAccountPage(),
-        "/home": (context) => HomePage()
+        "/home": (context) => HomePage(
+              user: ModalRoute.of(context)!.settings.arguments as UserModel,
+            )
       },
     );
   }
