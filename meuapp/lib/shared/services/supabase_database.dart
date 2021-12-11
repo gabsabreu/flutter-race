@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:meuapp/shared/models/user_model.dart';
 import 'package:meuapp/shared/services/app_databese.dart';
 import 'package:supabase/supabase.dart';
 
@@ -18,14 +19,24 @@ class SupabaseDatabase implements AppDatabase {
   }
 
   @override
-  Future<bool> createAccount({required String email, required String password, required String name}) async {
+  Future<UserModel> createAccount({required String email, required String password, required String name}) async {
     final response = await client.auth.signUp(email, password);
-    return response.error == null;
+    if (response.error == null) {
+      final user = UserModel.fromMap(response.user!.toJson());
+      return user;
+    } else {
+      throw Exception(response.error?.message ?? 'Não foi possível criar conta');
+    }
   }
 
   @override
-  Future<bool> login({required String email, required String password}) async {
+  Future<UserModel> login({required String email, required String password}) async {
     final response = await client.auth.signIn(email: email, password: password);
-    return response.error == null;
+    if (response.error == null) {
+      final user = UserModel.fromMap(response.user!.toJson());
+      return user;
+    } else {
+      throw Exception(response.error?.message ?? 'Não foi possível realizar login');
+    }
   }
 }

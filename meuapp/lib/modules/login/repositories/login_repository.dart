@@ -1,4 +1,6 @@
+import 'package:meuapp/shared/models/user_model.dart';
+
 abstract class LoginRepository {
-  Future<bool> login({required String email, required String password});
-  Future<bool> createAccount({required String email, required String password, required String name});
+  Future<UserModel> login({required String email, required String password});
+  Future<UserModel> createAccount({required String email, required String password, required String name});
 }

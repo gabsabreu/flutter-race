@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meuapp/modules/login/repositories/login_repository.dart';
+import 'package:meuapp/shared/models/user_model.dart';
 import 'package:meuapp/shared/services/app_databese.dart';
 import 'package:meuapp/shared/utils/app_state.dart';
 
@@ -37,12 +38,12 @@ class LoginController extends ChangeNotifier {
     if (validate()) {
       try {
         update(AppState.loading());
-        await repository.login(email: _email, password: _password);
+        final response = await repository.login(email: _email, password: _password);
 
-        update(AppState.success<String>('Usuario logado'));
+        update(AppState.success<UserModel>(response));
       } catch (e) {
         update(AppState.error(
-          'Não foi possível realizar login',
+          e.toString(),
         ));
       }
     }
