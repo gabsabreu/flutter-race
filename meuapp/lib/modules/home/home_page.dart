@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meuapp/shared/models/user_model.dart';
 import 'package:meuapp/shared/theme/app_theme.dart';
 import 'package:meuapp/shared/theme/widgets/bottom_navigator/app_bottom_navigator.dart';
+import 'package:meuapp/shared/theme/widgets/list_tile/app_list_tile.dart';
 
 class HomePage extends StatefulWidget {
   // final UserModel user;
@@ -28,6 +29,14 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: AppTheme.colors.background,
       body: Stack(
         children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppListTile(),
+              AppListTile(),
+              AppListTile(),
+            ],
+          ),
           Positioned(
             bottom: 14,
             left: 26,
