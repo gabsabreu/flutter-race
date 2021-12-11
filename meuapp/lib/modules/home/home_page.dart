@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:meuapp/shared/models/user_model.dart';
 import 'package:meuapp/shared/theme/app_theme.dart';
 import 'package:meuapp/shared/theme/widgets/bottom_navigator/app_bottom_navigator.dart';
+import 'package:meuapp/shared/theme/widgets/card_product/card_product.dart';
 import 'package:meuapp/shared/theme/widgets/list_tile/app_list_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,6 +34,13 @@ class _HomePageState extends State<HomePage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 126,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => CardProduct(),
+                  )),
               AppListTile(),
               AppListTile(),
               AppListTile(),
