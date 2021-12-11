@@ -21,53 +21,58 @@ class AppBottomNavigator extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            InkWell(
+            IconBottomNavigator(
+              icon: Icons.home,
               onTap: () {
                 onChanged(0);
               },
-              child: Container(
-                width: 40,
-                height: 40,
-                child: Icon(
-                  Icons.home,
-                  color: currentIndex == 0 ? AppTheme.colors.textEnabled : AppTheme.colors.iconInactive,
-                ),
-                decoration: BoxDecoration(
-                    color: currentIndex == 0 ? AppTheme.colors.primary : AppTheme.colors.background, borderRadius: BorderRadius.circular(12)),
-              ),
+              enabled: currentIndex == 0,
             ),
-            InkWell(
+            IconBottomNavigator(
+              icon: Icons.add,
               onTap: () {
                 onChanged(1);
               },
-              child: Container(
-                width: 40,
-                height: 40,
-                child: Icon(
-                  Icons.add,
-                  color: currentIndex == 1 ? AppTheme.colors.textEnabled : AppTheme.colors.iconInactive,
-                ),
-                decoration: BoxDecoration(
-                    color: currentIndex == 1 ? AppTheme.colors.primary : AppTheme.colors.background, borderRadius: BorderRadius.circular(12)),
-              ),
+              enabled: currentIndex == 1,
             ),
-            InkWell(
+            IconBottomNavigator(
+              icon: Icons.settings,
               onTap: () {
                 onChanged(2);
               },
-              child: Container(
-                width: 40,
-                height: 40,
-                child: Icon(
-                  Icons.person_outline,
-                  color: currentIndex == 2 ? AppTheme.colors.textEnabled : AppTheme.colors.iconInactive,
-                ),
-                decoration: BoxDecoration(
-                    color: currentIndex == 2 ? AppTheme.colors.primary : AppTheme.colors.background, borderRadius: BorderRadius.circular(12)),
-              ),
-            )
+              enabled: currentIndex == 2,
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class IconBottomNavigator extends StatelessWidget {
+  final Function() onTap;
+  final bool enabled;
+  final IconData icon;
+
+  const IconBottomNavigator({
+    Key? key,
+    required this.onTap,
+    required this.enabled,
+    required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: 40,
+        height: 40,
+        child: Icon(
+          icon,
+          color: enabled ? AppTheme.colors.textEnabled : AppTheme.colors.iconInactive,
+        ),
+        decoration: BoxDecoration(color: enabled ? AppTheme.colors.primary : AppTheme.colors.background, borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
