@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:meuapp/modules/login/repositories/login_repository.dart';
 import 'package:meuapp/shared/models/user_model.dart';

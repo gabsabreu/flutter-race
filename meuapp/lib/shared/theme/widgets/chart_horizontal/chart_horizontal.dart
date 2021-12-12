@@ -3,10 +3,7 @@ import 'package:meuapp/shared/theme/app_theme.dart';
 
 class ChartHorizontal extends StatelessWidget {
   final double percent;
-  const ChartHorizontal({
-    Key? key,
-    required this.percent,
-  }) : super(key: key);
+  const ChartHorizontal({Key? key, required this.percent}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,10 @@ class ChartHorizontal extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               gradient: LinearGradient(
-                colors: [AppTheme.colors.badColor, AppTheme.colors.primary],
+                colors: [
+                  AppTheme.colors.badColor,
+                  AppTheme.colors.primary,
+                ],
                 stops: [percent, 0.0],
               )),
           child: Padding(
@@ -63,7 +63,7 @@ class ChartHorizontal extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  'Pagou Caro',
+                  "Ruim",
                   style: AppTheme.textStyles.hint,
                 ),
               ],
@@ -78,7 +78,7 @@ class ChartHorizontal extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  'Boas compras',
+                  "Bom",
                   style: AppTheme.textStyles.hint,
                 ),
               ],

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:meuapp/modules/login/repositories/login_repository_impl.dart';
 import 'package:meuapp/shared/services/app_database.dart';
@@ -29,7 +31,6 @@ class _LoginPageState extends State<LoginPage> {
               builder: (context) => Container(
                     child: Text(message),
                   ))),
-          loading: () => print('Loading...'),
           orElse: () {});
     });
     super.initState();
@@ -41,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -58,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               InputText(
                 label: 'E-mail',
                 hint: 'Digite seu email',
-                validator: (value) => isEmail(value!) ? null : 'Digite um e-mail válido',
+                validator: (value) => isEmail(value) ? null : 'Digite um e-mail válido',
                 onChanged: (value) => controller.onChange(email: value),
               ),
               SizedBox(height: 18),
@@ -66,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                 label: 'Senha',
                 obscure: true,
                 hint: 'Digite sua senha',
-                validator: (value) => value!.length >= 6 ? null : 'Digite uma senha mais forte',
+                validator: (value) => value.length >= 6 ? null : 'Digite uma senha mais forte',
                 onChanged: (value) => controller.onChange(password: value),
               ),
               SizedBox(height: 14),

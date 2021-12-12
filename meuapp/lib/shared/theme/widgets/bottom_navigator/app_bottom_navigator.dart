@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app_theme.dart';
+import 'package:meuapp/shared/theme/app_theme.dart';
 
 class AppBottomNavigator extends StatelessWidget {
   final int currentIndex;

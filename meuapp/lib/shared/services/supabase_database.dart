@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:meuapp/shared/models/user_model.dart';
 import 'package:meuapp/shared/services/app_database.dart';
 import 'package:supabase/supabase.dart';
@@ -26,7 +25,7 @@ class SupabaseDatabase implements AppDatabase {
       await createUser(user);
       return user;
     } else {
-      throw Exception(response.error?.message ?? 'Não foi possível criar conta');
+      throw Exception(response.error?.message ?? "Não foi possível criar conta");
     }
   }
 
@@ -37,7 +36,7 @@ class SupabaseDatabase implements AppDatabase {
       final user = await getUser(response.user!.id);
       return user;
     } else {
-      throw Exception(response.error?.message ?? 'Não foi possível realizar login');
+      throw Exception(response.error?.message ?? "Não foi possível realizar login");
     }
   }
 
@@ -47,7 +46,7 @@ class SupabaseDatabase implements AppDatabase {
     if (response.error == null) {
       return user;
     } else {
-      throw Exception('Não foi possível cadastrar o usuário');
+      throw Exception("Não foi possível cadastrar o usuário");
     }
   }
 
@@ -60,5 +59,23 @@ class SupabaseDatabase implements AppDatabase {
     } else {
       throw Exception("Não foi possível buscar o usuário");
     }
+  }
+
+  @override
+  Future<bool> create({required String table, required Map<String, dynamic> data}) async {
+    final response = await client.from(table).insert(data).execute();
+    if (response.error != null) {
+      throw Exception(response.error!.message);
+    }
+    return true;
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> getAll(String table) async {
+    final response = await client.from(table).select("*").order("created").execute();
+    if (response.error != null) {
+      throw Exception(response.error!.message);
+    }
+    return (response.data as List<dynamic>).map((e) => e as Map<String, dynamic>).toList();
   }
 }

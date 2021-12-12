@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../app_theme.dart';
+import 'package:meuapp/shared/theme/app_theme.dart';
 
 class InputText extends StatelessWidget {
   final String label;
   final String hint;
   final bool obscure;
   final void Function(String)? onChanged;
-  final String? Function(String?)? validator;
+  final String? Function(String)? validator;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   const InputText({
@@ -28,7 +28,9 @@ class InputText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label).label,
-        SizedBox(height: 12),
+        SizedBox(
+          height: 12,
+        ),
         TextFormField(
           keyboardType: keyboardType,
           inputFormatters: inputFormatters,
@@ -36,9 +38,10 @@ class InputText extends StatelessWidget {
           onChanged: onChanged,
           validator: (value) {
             if (validator != null) {
-              return validator!(value ?? '');
+              return validator!(value ?? "");
             }
           },
+          style: AppTheme.textStyles.input,
           decoration: InputDecoration(
               hintStyle: AppTheme.textStyles.hint,
               hintText: hint,

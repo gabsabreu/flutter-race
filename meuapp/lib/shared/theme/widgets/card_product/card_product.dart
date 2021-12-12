@@ -1,15 +1,14 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:meuapp/shared/models/product_model.dart';
 
-import '../../app_theme.dart';
+import 'package:meuapp/shared/theme/app_theme.dart';
 
 class CardProduct extends StatelessWidget {
-  final bool like;
+  final ProductModel product;
   const CardProduct({
     Key? key,
-    required this.like,
+    required this.product,
   }) : super(key: key);
 
   @override
@@ -23,25 +22,29 @@ class CardProduct extends StatelessWidget {
           children: [
             ListTile(
               leading: CircleAvatar(
-                  backgroundColor: AppTheme.colors.background,
-                  radius: 30,
-                  child: like
-                      ? Icon(FontAwesomeIcons.thumbsUp)
-                      : Icon(
-                          FontAwesomeIcons.thumbsDown,
-                          color: AppTheme.colors.badColor,
-                        )),
+                backgroundColor: AppTheme.colors.background,
+                radius: 30,
+                child: product.currentPrice < product.lastPrice
+                    ? Icon(FontAwesomeIcons.thumbsUp)
+                    : Icon(
+                        FontAwesomeIcons.thumbsDown,
+                        color: AppTheme.colors.badColor,
+                      ),
+              ),
               title: Text(
-                'Carne 1Kg',
+                product.name,
                 style: AppTheme.textStyles.titleListTile,
               ),
-              subtitle: Text('Estava', style: AppTheme.textStyles.subtitleListTile),
+              subtitle: Text(
+                "Estava R\$ ${product.lastPrice}",
+                style: AppTheme.textStyles.subtitleListTile,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 50),
               child: Text.rich(
-                TextSpan(text: 'Agora\n', style: AppTheme.textStyles.subtitleListTile, children: [
-                  TextSpan(text: 'R\$ 67,50', style: AppTheme.textStyles.title),
+                TextSpan(text: "Agora\n", style: AppTheme.textStyles.subtitleListTile, children: [
+                  TextSpan(text: "R\$ ${product.currentPrice}", style: AppTheme.textStyles.title),
                 ]),
               ),
             )
