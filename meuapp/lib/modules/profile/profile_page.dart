@@ -13,7 +13,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -22,7 +22,35 @@ class _ProfilePageState extends State<ProfilePage> {
               style: AppTheme.textStyles.title.copyWith(fontSize: 36),
             ),
             SizedBox(
-              height: 100,
+              height: 80,
+            ),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: Icon(
+                      Icons.account_circle,
+                      size: 78,
+                    ),
+                    title: Text(
+                      'Olá, Gabe!',
+                      style: AppTheme.textStyles.title,
+                    ),
+                    subtitle: Text('Aqui é seu espaço de configuração do aplicativo.', style: AppTheme.textStyles.subtitle),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Nosso app ainda esta em construção, e você pode nos ajudar a evoluir! \nSe tiver dúvidas, sugestões envie para email@email.com',
+                      style: AppTheme.textStyles.subtitle,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
             ),
             Container(
               decoration: BoxDecoration(
