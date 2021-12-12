@@ -63,7 +63,7 @@ class ChartHorizontal extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  "Ruim",
+                  "Pagou Caro",
                   style: AppTheme.textStyles.hint,
                 ),
               ],
@@ -78,7 +78,7 @@ class ChartHorizontal extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  "Bom",
+                  "Boas compras",
                   style: AppTheme.textStyles.hint,
                 ),
               ],
